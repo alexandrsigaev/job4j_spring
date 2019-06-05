@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="jdbc_person_store" class="ru.job4j.persistent.JdbcStorage">
+        <constructor-arg index="0" value="org.postgresql.Driver"/>
+        <constructor-arg index="1" value="jdbc:postgresql://127.0.0.1:5432/hibernate"/>
+        <constructor-arg index="2" value="postgres"/>
+        <constructor-arg index="3" value="qwerty"/>
+    </bean>
+
+    <bean id="import" class="ru.job4j.ImportUser">
+        <constructor-arg name="repository" ref="jdbc_person_store"/>
+    </bean>
+
+    <bean id="memory_store" class="ru.job4j.persistent.MemoryStorage"/>
+
+</beans>
